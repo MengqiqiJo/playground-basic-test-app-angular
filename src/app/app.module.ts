@@ -5,10 +5,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api-service.service';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
