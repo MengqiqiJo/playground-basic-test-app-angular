@@ -15,7 +15,7 @@ export class QuestionnaireComponent implements OnInit {
   itemJson: Item[];
   questionnaireForm: FormGroup;
   fieldType = {
-    "boolean": "checkbox",
+    "boolean": "radio",
     "string": "text",
     "date": "date"
   }
@@ -58,7 +58,6 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   onSubmit() {
-    
     // console.log(this.questionnaireForm.value);
     this.setQuestionnaireResponse(this.questionnaireForm.value);
   }
