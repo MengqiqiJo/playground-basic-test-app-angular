@@ -5,7 +5,7 @@ export class Questionnaire {
   public id: string;
   public url: string;
   public status: string;
-  public sujectType: string[];
+  public subjectType: string[];
   public date: string;
-  public items: Item[];
+  public item: Item[];
 }
