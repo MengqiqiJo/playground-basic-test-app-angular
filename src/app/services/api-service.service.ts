@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+import { Observable } from 'rxjs';
+import { Questionnaire } from '../shared/questionnaire.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +24,10 @@ export class ApiService {
       'Content-Type': 'application/fhir+json'
     });
     return headers;
+  }
+
+  getQuestionnaire(): Observable<Questionnaire> {
+    return this.httpClient.get<Questionnaire>('../assets/questionnaire.json');
   }
 }
 

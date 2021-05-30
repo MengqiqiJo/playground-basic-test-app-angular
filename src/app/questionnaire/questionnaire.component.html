@@ -1,1 +1,60 @@
-<p>questionnaire works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="questionnaireForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let eachItem of itemJson">
+        <div *ngIf='eachItem.type === "boolean"'> 
+          <div class="sectiion-title" style="font-size: 20px;">{{eachItem.text}}</div>
+          <div class="form-group">
+            <label [for]="eachItem.linkId">{{eachItem.text}}</label>
+              <div *ngFor="let booleanOption of setBooleanOptions">
+                <input 
+                  type="radio"
+                  [formControlName]="eachItem.linkId"
+                  [value]="booleanOption"
+                > {{booleanOption}}
+              </div>
+              <!-- <span *ngIf="!questionnaireForm.get(eachItem.linkId).valid && questionnaireForm.get(eachItem.linkId).touched">Please enter a valid value!</span> -->
+          </div>       
+        </div>
+        <div *ngIf='eachItem.type === "group"'>
+          <div class="sectiion-title" style="font-size: 20px;">{{eachItem.text}}</div>
+          <div *ngIf='eachItem.item'>
+            <div *ngFor="let eachGroupItem of eachItem.item">
+              <div class="form-group">
+                <label [for]="eachGroupItem.linkId">{{eachGroupItem.text}}</label>
+                <div *ngIf="eachGroupItem.type === 'boolean'; else elseBlock">
+                  <div *ngFor="let booleanOption of setBooleanOptions">
+                    <input 
+                      type="radio"
+                      [formControlName]="eachGroupItem.linkId"
+                      [value]="booleanOption"
+                    > {{booleanOption}}
+                    </div>
+                 <!-- <span *ngIf="!questionnaireForm.get(eachGroupItem.linkId).valid && questionnaireForm.get(eachGroupItem.linkId).touched">Please enter a valid value!</span> -->
+
+                </div>
+                <!-- <div *ngIf=""></div>
+                <div *ngIf=""></div> -->
+                <ng-template #elseBlock>
+                  <input
+                  [type]="fieldType[eachGroupItem.type]"
+                  [id]="eachGroupItem.linkId"
+                  [formControlName]="eachGroupItem.linkId"
+                  class="form-control">
+                 <!-- <span *ngIf="!questionnaireForm.get(eachGroupItem.linkId).valid && questionnaireForm.get(eachGroupItem.linkId).touched">Please enter a valid value!</span> -->
+                </ng-template>
+               </div>       
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <button type="submit" [disabled]="!questionnaireForm.valid">
+        <!-- <button type="submit"> -->
+        Submit
+      </button>
+    </form>
+    <textarea name="" *ngIf='displayResult' [(ngModel)]='displayResult' id="myTextarea" cols="100"
+    rows="100"></textarea>
+  </div>
+</div>

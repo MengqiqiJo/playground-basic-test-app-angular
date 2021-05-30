@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api-service.service';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     ApiService
