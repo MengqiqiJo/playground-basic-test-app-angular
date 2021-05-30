@@ -1,28 +1,31 @@
-<div class="row">
-  <div class="col-xs-12">
+<div class="container">
+  <div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div class="field-title">Questionnaire</div>
     <form [formGroup]="questionnaireForm" (ngSubmit)="onSubmit()">
       <div *ngFor="let eachItem of itemJson">
         <div *ngIf='eachItem.type === "boolean"'> 
-          <div class="sectiion-title" style="font-size: 20px;">{{eachItem.text}}</div>
-          <div class="form-group">
+          <div class="form-group form-elements">
             <label [for]="eachItem.linkId">{{eachItem.text}}</label>
-              <div *ngFor="let booleanOption of setBooleanOptions">
+            <div>
+              <div class="form-check form-check-inline" *ngFor="let booleanOption of setBooleanOptions">
                 <input 
                   type="radio"
                   [formControlName]="eachItem.linkId"
                   [value]="booleanOption"
                 > {{booleanOption}}
               </div>
+            </div>
           </div>       
         </div>
         <div *ngIf='eachItem.type === "group"'>
-          <div class="sectiion-title" style="font-size: 20px;">{{eachItem.text}}</div>
+          <div class="section-title">{{eachItem.text}}</div>
           <div *ngIf='eachItem.item'>
             <div *ngFor="let eachGroupItem of eachItem.item">
-              <div class="form-group">
+              <div class="form-group form-elements">
                 <label [for]="eachGroupItem.linkId">{{eachGroupItem.text}}</label>
                 <div *ngIf="eachGroupItem.type === 'boolean'; else elseBlock">
-                  <div *ngFor="let booleanOption of setBooleanOptions">
+                  <div class="form-check form-check-inline" *ngFor="let booleanOption of setBooleanOptions">
                     <input 
                       type="radio"
                       [formControlName]="eachGroupItem.linkId"
@@ -36,7 +39,7 @@
                   [id]="eachGroupItem.linkId"
                   [formControlName]="eachGroupItem.linkId"
                   class="form-control">                 
-                  <span class="text-muted" *ngIf="!questionnaireForm.controls[eachGroupItem.linkId].valid && questionnaireForm.controls[eachGroupItem.linkId]?.touched"> 
+                  <span class="alert alert-danger" *ngIf="!questionnaireForm.controls[eachGroupItem.linkId].valid && questionnaireForm.controls[eachGroupItem.linkId]?.touched"> 
                     Please enter a valid value!
                   </span>                
                 </ng-template>
@@ -45,11 +48,13 @@
           </div>
         </div>
       </div>
-      <button type="submit" [disabled]="!questionnaireForm.valid">
+      <button type="submit"  class="btn btn-primary"  [disabled]="!questionnaireForm.valid">
         Submit
       </button>
     </form>
-    <textarea name="" *ngIf='displayResult' [(ngModel)]='displayResult' id="myTextarea" cols="100"
-    rows="100"></textarea>
+    <!-- <textarea name="" *ngIf='displayResult' [(ngModel)]='displayResult' id="myTextarea" cols="100"
+    rows="10"></textarea> -->
+    <app-display-response></app-display-response>
   </div>
+</div>
 </div>

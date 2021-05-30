@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { from } from 'rxjs';
 import { ApiService } from '../services/api-service.service';
 import { Item } from '../shared/item.model';
 import { Questionnaire } from '../shared/questionnaire.model';
 import { QuestionnaireResponse } from '../shared/questionnaireResponse.model';
+import { ResponseService } from './response.service';
 
 @Component({
   selector: 'app-questionnaire',
   templateUrl: './questionnaire.component.html',
-  styleUrls: ['./questionnaire.component.scss']
+  styleUrls: ['./questionnaire.component.scss'],
+  providers: [ResponseService]
 })
 export class QuestionnaireComponent implements OnInit {
   questionnaireJSON: Questionnaire;
@@ -23,7 +26,7 @@ export class QuestionnaireComponent implements OnInit {
   // questionnaireResponse: QuestionnaireResponse;
   displayResult: any;
 
-  constructor(private apiServer: ApiService) { }
+  constructor(private apiServer: ApiService, private responseService: ResponseService) { }
 
   ngOnInit() {
     this.questionnaireForm = new FormGroup({});
@@ -82,6 +85,7 @@ export class QuestionnaireComponent implements OnInit {
       }
     })
     this.displayResult = JSON.stringify(response);
+    this.responseService.setQuestionnaireResponse(this.displayResult);
     console.log(this.displayResult);
   }
 

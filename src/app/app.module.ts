@@ -6,12 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api-service.service';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DisplayResponseComponent } from './questionnaire/display-response/display-response.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    DisplayResponseComponent
   ],
   imports: [
     BrowserModule,
