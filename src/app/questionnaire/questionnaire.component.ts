@@ -37,13 +37,11 @@ export class QuestionnaireComponent implements OnInit {
           }
           if(element.type === "group"){
             element.item.forEach(eachItem => {
-              // eachItem.linkId = eachItem.linkId.replace('.', '/');
               console.log(eachItem.linkId);
               if (eachItem.type === 'string') {
                 this.questionnaireForm.addControl(eachItem.linkId, new FormControl(null, [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-z][A-Z]*/)]))
               }
               if (eachItem.type === 'date') {
-                // this.questionnaireForm.addControl(eachItem.linkId, new FormControl(null, [Validators.required, Validators.pattern(/^\d{4}\/\d{2}\/\d{2}$/)]),)
                 this.questionnaireForm.addControl(eachItem.linkId, new FormControl(null, Validators.required),)
               }
               if (eachItem.type === 'boolean') {
@@ -74,12 +72,8 @@ export class QuestionnaireComponent implements OnInit {
       resourceType: 'QuestionnaireResponse',
       identifier: this.questionnaireJSON.id,
       basedOn: this.questionnaireJSON.url,
-      // partOf: this.questionnaireJSON.url, 
       status: this.questionnaireJSON.status,
       subject: this.questionnaireJSON.subjectType,
-      // authored: new Date().toLocaleString(),
-      // author: this.questionnaireJSON.id,
-      // source: this.questionnaireJSON.url,
     };
     response.item = this.itemJson;
     response.item.map((item) => {
