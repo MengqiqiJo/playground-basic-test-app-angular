@@ -1,22 +1,19 @@
-.field-title {
-  font-weight: bold;
-  font-size: 2rem;
-}
 .section-title {
   font-weight: bold;
   font-size: 1.6rem;
+  margin: 1.2rem;
 }
 @media screen and (min-width: 900px) {
   .form-elements {
     width: 80%;
-    margin: 2rem;
+    margin: 1.2rem;
   }
 }
 
 @media screen and (max-width: 900px) {
   .form-elements {
     width: 80%;
-    margin: 2rem;
+    margin: 1.2rem;
   }
 }
 
@@ -24,10 +21,6 @@ input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-textarea {
-  width: 100%;
-  min-height: 30rem;
-  font-family: 'Lucida Console', Monaco, monospace;
-  font-size: 0.8rem;
-  line-height: 1.2;
+.submit-button {
+  margin-bottom: 2rem;
 }

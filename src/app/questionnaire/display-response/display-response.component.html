@@ -1,1 +1,33 @@
-<p>display-response works!</p>
+<div class="answer-content">
+  <div>
+    <span class="response-text">resourceType : </span> 
+    <span>{{displayResponse.resourceType}}</span>  
+  </div>
+  <div>
+    <span class="response-text">identifier : </span> 
+    <span>{{displayResponse.identifier}}</span> 
+  </div>
+  <div>
+    <span class="response-text">basedOn : </span>  
+    <span>{{displayResponse.basedOn}}</span> 
+  </div>
+  <div>
+    <span class="response-text">status : </span> 
+    <span>{{displayResponse.status}}</span> 
+  </div>
+
+  <div>
+    <div *ngFor="let eachItem of displayResponse.item">
+      <div *ngIf="eachItem.type !== 'group'">
+        <span class="response-text">{{eachItem.text}} </span> 
+        <span>{{eachItem.answer}}</span> 
+      </div>
+      <div *ngIf="eachItem.type === 'group'">
+        <div *ngFor="let item of eachItem.item">
+          <span class="response-text">{{item.text}} </span> 
+          <span>{{item.answer}}</span> 
+        </div>   
+      </div>
+    </div>
+  </div>
+</div>

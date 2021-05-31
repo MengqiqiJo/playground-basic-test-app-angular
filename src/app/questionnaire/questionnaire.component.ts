@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { from } from 'rxjs';
 import { ApiService } from '../services/api-service.service';
 import { Item } from '../shared/item.model';
 import { Questionnaire } from '../shared/questionnaire.model';
 import { QuestionnaireResponse } from '../shared/questionnaireResponse.model';
-import { ResponseService } from './response.service';
 
 @Component({
   selector: 'app-questionnaire',
   templateUrl: './questionnaire.component.html',
   styleUrls: ['./questionnaire.component.scss'],
-  providers: [ResponseService]
 })
 export class QuestionnaireComponent implements OnInit {
   questionnaireJSON: Questionnaire;
@@ -22,15 +19,13 @@ export class QuestionnaireComponent implements OnInit {
     "string": "text",
     "date": "date"
   }
-  setBooleanOptions = ["true", "false"];
-  // questionnaireResponse: QuestionnaireResponse;
+  setBooleanOptions = ["Yes", "No"];
   displayResult: any;
 
-  constructor(private apiServer: ApiService, private responseService: ResponseService) { }
+  constructor(private apiServer: ApiService) { }
 
   ngOnInit() {
     this.questionnaireForm = new FormGroup({});
-    
     this.apiServer
       .getQuestionnaire()
       .subscribe((data: Questionnaire) => {
@@ -57,11 +52,20 @@ export class QuestionnaireComponent implements OnInit {
             });
           }
         });
+
+        this.questionnaireForm.setValue({
+          '1': 'No',
+          '2.1': 'female',
+          '2.2': '2021-05-30',
+          '2.3': 'canada',
+          '2.4': 'single',
+          '3.1': 'No',
+          '3.2': 'Yes'
+        });  
       });      
   }
 
   onSubmit() {
-    // console.log(this.questionnaireForm.value);
     this.setQuestionnaireResponse(this.questionnaireForm.value);
   }
 
@@ -84,9 +88,7 @@ export class QuestionnaireComponent implements OnInit {
         item.item.map(x => x.answer = submitResult[x.linkId]);
       }
     })
-    this.displayResult = JSON.stringify(response);
-    this.responseService.setQuestionnaireResponse(this.displayResult);
-    console.log(this.displayResult);
+    this.displayResult = response;
   }
 
 }

@@ -1,13 +1,17 @@
 import { QuestionnaireResponse } from '../shared/questionnaireResponse.model';
 
 export class ResponseService {
-    private questionnaireResponse: QuestionnaireResponse[] = [];
+    private questionnaireResponse: any;
 
-    setQuestionnaireResponse(response: QuestionnaireResponse[]) {
+    setQuestionnaireResponse(response: any) {
         this.questionnaireResponse = response;
     }
 
     getQuestionnaireResponse() {
         return this.questionnaireResponse;
+    }
+
+    getStringExample() {
+        return "get example";
     }
 }

@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ResponseService } from '../response.service';
-import { QuestionnaireResponse } from '../../shared/questionnaireResponse.model';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-display-response',
   templateUrl: './display-response.component.html',
-  styleUrls: ['./display-response.component.scss']
+  styleUrls: ['./display-response.component.scss'],
 })
 export class DisplayResponseComponent implements OnInit {
-  response: QuestionnaireResponse[] = [];
-
-  constructor(private responseService: ResponseService) { }
+  @Input() displayResponse: any;
+  constructor() { }
 
   ngOnInit(): void {
-    this.response = this.responseService.getQuestionnaireResponse();
-    console.log(this.response);
+    console.log("response");
+    console.log(typeof(this.displayResponse));
   }
 
 }
