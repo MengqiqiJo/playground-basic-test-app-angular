@@ -39,7 +39,9 @@
                   [id]="eachGroupItem.linkId"
                   [formControlName]="eachGroupItem.linkId"
                   class="form-control">                 
-                  <span class="alert alert-danger" *ngIf="!questionnaireForm.controls[eachGroupItem.linkId].valid && questionnaireForm.controls[eachGroupItem.linkId]?.touched"> 
+                  <span 
+                    class="alert alert-danger" 
+                    *ngIf="!questionnaireForm.controls[eachGroupItem.linkId].valid && questionnaireForm.controls[eachGroupItem.linkId]?.touched"> 
                     Please enter a valid value!
                   </span>                
                 </ng-template>
